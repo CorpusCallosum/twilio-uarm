@@ -1,7 +1,7 @@
 
 void setPosition(){
     String msg = "#1 G0 X" + roundTwoDecimals(current_x) + " Y" + roundTwoDecimals(current_y) + " Z" + roundTwoDecimals(current_z) + " F0\n";
-    printf(msg);
+  //  printf(msg);
    if(SERIAL_EN)
      uPort.write(msg);  
 }

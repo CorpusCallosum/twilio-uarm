@@ -70,9 +70,10 @@ public void setup(){
   reset();
   initPort();
   //OSC stuff...
-  oscP5 = new OscP5(this,12000);
+  oscP5 = new OscP5(this, 12000);
+  
   /* the address of the osc broadcast server */
-  myRemoteLocation = new NetAddress("127.0.0.1",32000);
+ // myRemoteLocation = new NetAddress("192.168.0.10", 5005);
 }
 
 public void draw(){
@@ -250,4 +251,13 @@ void keyPressed() {
   else if (key ==' ')
     button_grab_clicked(null, null);
     
+}
+
+
+/* incoming osc message are forwarded to the oscEvent method. */
+void oscEvent(OscMessage theOscMessage) {
+  /* print the address pattern and the typetag of the received OscMessage */
+  print("### received an osc message.");
+  print(" addrpattern: "+theOscMessage.addrPattern());
+  println(" typetag: "+theOscMessage.typetag());
 }
