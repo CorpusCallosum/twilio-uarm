@@ -8,7 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 //twilio stuff
-import http.requests.*;
+//import http.requests.*;
+
+//OSC
+import oscP5.*;
+import netP5.*;
+OscP5 oscP5;
+NetAddress myRemoteLocation;
 
 //settings
 static int easing = 10;
@@ -63,6 +69,10 @@ public void setup(){
   customGUI();
   reset();
   initPort();
+  //OSC stuff...
+  oscP5 = new OscP5(this,12000);
+  /* the address of the osc broadcast server */
+  myRemoteLocation = new NetAddress("127.0.0.1",32000);
 }
 
 public void draw(){
