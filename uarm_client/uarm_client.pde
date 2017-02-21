@@ -71,6 +71,7 @@ public void setup(){
   initPort();
   
   //OSC stuff...
+  //this initializes the OSC port, listening on local host IP and port 12000
   oscP5 = new OscP5(this, 12000);
   
   /* the address of the osc broadcast server */
@@ -120,8 +121,10 @@ void setUIValue(float x, float y, float z, float h)
 }
 
 void initPort(){
-  String portName = droplist_serial.getSelectedText();
+  //String portName = droplist_serial.getSelectedText();
+  String portName = "/dev/tty.usbserial-AI04I16Q";
   printf(portName);
+  //portName = '/dev/tty.usbserial-AI04I16J';
   try{
     uPort = new Serial(this, portName, 115200);
     printf("Connecting to Port:" + portName);
@@ -232,18 +235,14 @@ void printf(String msg) {
 int stepSize = 20;
 void keyPressed() {
   println("key pressed!");
-  if(keyCode == LEFT){
-    slider2d_xy.setValueX(current_x-stepSize);
-  }
-  else if(keyCode == RIGHT){
-    slider2d_xy.setValueX(current_x+stepSize);
-  }
-  else if(keyCode == UP){
-    slider2d_xy.setValueY(current_y+stepSize);
-  }
-  else if(keyCode == DOWN){
-    slider2d_xy.setValueY(current_y-stepSize);
-  }
+  if(keyCode == LEFT)
+    move(-1,0,0);
+  else if(keyCode == RIGHT)
+    move(1,0,0);
+  else if(keyCode == UP)
+    move(0,1,0);
+  else if(keyCode == DOWN)
+    move(0,-1,0);
   
   if(key == 'q')
     slider_z_axis.setValue(current_z + stepSize);
@@ -261,4 +260,28 @@ void oscEvent(OscMessage theOscMessage) {
   print("### received an osc message.");
   print(" addrpattern: "+theOscMessage.addrPattern());
   println(" typetag: "+theOscMessage.typetag());
+  String m = theOscMessage.get(0).stringValue();
+  
+  println(m);
+  
+  if(m.equals("up"))
+    move(0,0,1);
+  else if(m.equals("down"))
+    move(0,0,-1);
+  else if(m.equals("left"))
+    move(-1,0,0);
+  else if(m.equals("right"))
+    move(1,0,0);
+  else if(m.equals("forward"))
+    move(0,1,0);
+  else if(m.equals("back"))
+    move(0,-1,0);
+    
+  println("end of oscEvent listener");
+}
+
+void move(int x, int y, int z){
+  slider2d_xy.setValueX(current_x+(x*stepSize));
+  slider2d_xy.setValueY(current_y+(y*stepSize));
+  slider_z_axis.setValue(current_z+(z*stepSize));
 }

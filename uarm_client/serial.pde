@@ -28,3 +28,10 @@ void setWrist(){
    if(SERIAL_EN)
      uPort.write(msg);    
 }
+
+void stop() {
+  // Clear the buffer, or available() will still be > 0
+  uPort.clear();
+  // Close the port
+  uPort.stop();
+} 
