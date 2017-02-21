@@ -69,6 +69,7 @@ public void setup(){
   customGUI();
   reset();
   initPort();
+  
   //OSC stuff...
   oscP5 = new OscP5(this, 12000);
   

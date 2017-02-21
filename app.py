@@ -15,7 +15,8 @@ AUTH_TOKEN = "5ce7b32f70cd243c03bf9cdb14df3dda"
 #client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
 c = OSC.OSCClient()
-c.connect(('127.0.0.1', 5005))
+#c.connect(('127.0.0.1', 5005))
+c.connect(('192.168.0.29', 12000))
 
 
 #open("uarm.txt", 'w').close()
@@ -127,4 +128,4 @@ def sms2():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='127.0.0.1', port=5000)
