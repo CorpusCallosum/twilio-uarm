@@ -15,7 +15,7 @@ AUTH_TOKEN = "5ce7b32f70cd243c03bf9cdb14df3dda"
 #client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
 c = OSC.OSCClient()
-c.connect(('127.0.0.1', 5005))
+c.connect(('192.168.0.30', 12000))
 
 
 #open("uarm.txt", 'w').close()
@@ -40,31 +40,42 @@ def index():
 @app.route("/arm1", methods=['GET','POST'])
 def sms1():
 
-    body = request.form['Body']
-    msg = body
+    msg = request.form['Body']
+    
     
 
     if msg == "UP" or msg == "up" or msg == "Up":
+        body = "up"
         message = "Go Red Team! Arm 1 Moving Up!"
     elif msg == "DOWN" or msg == "down" or msg == "Down":
+        body = "down"
         message = "Go Red Team! Arm 1 Moving Down!"
     elif msg == "LEFT" or msg == "left" or msg == "Left":
+        body = "left"
         message = "Go Red Team! Arm 1 Moving Left!"
     elif msg == "RIGHT" or msg == "right" or msg == "Right":
+        body = "right"
         message = "Go Red Team! Arm 1 Moving Right!"
     elif msg == "FORWARD" or msg == "forward" or msg == "Forward":
+        body = "forward"
         message = "Go Red Team! Arm 1 Moving Forward!"
     elif msg == "BACK" or msg == "back" or msg == "Back":
+        body = "back"
         message = "Go Red Team! Arm 1 Moving Back!"
     elif msg == "CLOCKWISE" or msg == "clockwise" or msg == "Clockwise":
+        body = "clockwise"
         message = "Go Red Team! Arm 1 Rotating Clockwise!"
     elif msg == "COUNTERCLOCKWISE" or msg == "counterclockwise" or msg == "Counterclockwise" or msg == "Counter clockwise" or msg == "counter clockwise" or msg == "COUNTER CLOCKWISE" or msg == "Counter Clockwise":
+        body = "counterclockwise"
         message = "Go Red Team! Arm 1 Rotating Counterclockwise!"
     elif msg == "CATCH" or msg == "catch" or msg == "Catch":
+        body = "catch"
         message = "Go Red Team! Arm 1 Grabbing!"
     elif msg == "RELEASE" or msg == "release" or msg == "Release":
+        body = "release"
         message = "Go Red Team! Arm 1 Dropping!"
     elif msg == "RESET" or msg == "reset" or msg == "Reset":
+        body = "reset"
         message = "Reset!"
     else:
         message = "Sorry, that's not a valid command!"
@@ -84,33 +95,42 @@ def sms1():
 @app.route("/arm2", methods=['GET', 'POST'])
 def sms2():
 
-    body = request.form['Body']
-    msg = str(body)
+    msg = request.form['Body']
     
 
     if msg == "UP" or msg == "up" or msg == "Up":
         message = "Go Blue Team! Arm 2 Moving Up!"
-        print "here"
+        body = "up"
     elif msg == "DOWN" or msg == "down" or msg == "Down":
         message = "Go Blue Team! Arm 2 Moving Down!"
+        body = "down"
     elif msg == "LEFT" or msg == "left" or msg == "Left":
         message = "Go Blue Team! Arm 2 Moving Left!"
+        body = "left"
     elif msg == "RIGHT" or msg == "right" or msg == "Right":
         message = "Go Blue Team! Arm 2 Moving Right!"
+        body = "right"
     elif msg == "FORWARD" or msg == "forward" or msg == "Forward":
         message = "Go Blue Team! Arm 2 Moving Forward!"
+        body = "forward"
     elif msg == "BACK" or msg == "back" or msg == "Back":
         message = "Go Blue Team! Arm 2 Moving Back!"
+        body = "back"
     elif msg == "CLOCKWISE" or msg == "clockwise" or msg == "Clockwise":
         message = "Go Blue Team! Arm 2 Rotating Clockwise!"
+        body = "clockwise"
     elif msg == "COUNTERCLOCKWISE" or msg == "counterclockwise" or msg == "Counterclockwise" or msg == "Counter clockwise" or msg == "counter clockwise" or msg == "COUNTER CLOCKWISE" or msg == "Counter Clockwise":
         message = "Go Blue Team! Arm 2 Rotating Counterclockwise!"
+        body = "counterclockwise"
     elif msg == "CATCH" or msg == "catch" or msg == "Catch":
         message = "Go Blue Team! Arm 2 Grabbing!"
+        body = "catch"
     elif msg == "RELEASE" or msg == "release" or msg == "Release":
         message = "Go Blue Team! Arm 2 Dropping!"
+        body = "release"
     elif msg == "RESET" or msg == "reset" or msg == "Reset":
         message = "Reset!"
+        body = "reset"
     else:
         message = "Sorry, that is not a valid command!"
 
@@ -127,4 +147,5 @@ def sms2():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='127.0.0.1', port=5000)
+    
