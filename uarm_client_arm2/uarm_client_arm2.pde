@@ -20,12 +20,12 @@ NetAddress myRemoteLocation;
 static int easing = 10;
 
 //arm 1
-static String address = "/uarm1";
-static String portName = "/dev/tty.usbserial-AI04I16Q";
+//static String address = "/uarm1";
+//static String portName = "/dev/tty.usbserial-AI04I16Q";
 
 //arm 2
-//static String address = "/uarm2";
-//static String portName = "/dev/tty.usbserial-AI04I16J";
+static String address = "/uarm2";
+static String portName = "/dev/tty.usbserial-AI04I16J";
 
 static final  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -80,7 +80,7 @@ public void setup(){
   
   //OSC stuff...
   //this initializes the OSC port, listening on local host IP and port 12000
-  oscP5 = new OscP5(this, 12000);
+  oscP5 = new OscP5(this, 12001);
   
   /* the address of the osc broadcast server */
  // myRemoteLocation = new NetAddress("192.168.0.10", 5005);

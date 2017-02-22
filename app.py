@@ -17,6 +17,9 @@ AUTH_TOKEN = "5ce7b32f70cd243c03bf9cdb14df3dda"
 c = OSC.OSCClient()
 c.connect(('127.0.0.1', 12000))
 
+c2 = OSC.OSCClient()
+c2.connect(('127.0.0.1', 12001))
+
 
 #open("uarm.txt", 'w').close()
 
@@ -141,7 +144,8 @@ def sms2():
     oscmsg = OSC.OSCMessage()
     oscmsg.setAddress("/uarm2")
     oscmsg.append(body)
-    c.send(oscmsg)
+    #c.send(oscmsg)
+    c2.send(oscmsg)
     return str(resp)
 
 
