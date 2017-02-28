@@ -285,7 +285,10 @@ void oscEvent(OscMessage theOscMessage) {
       move(0,1,0);
     else if(m.equals("back"))
       move(0,-1,0);
-      
+    else if(m.equals("catch"))
+      button_grab_clicked(null, null);
+    else if(m.equals("release"))
+      button_grab_clicked(null, null);  
     println("end of oscEvent listener");
   }
 }
