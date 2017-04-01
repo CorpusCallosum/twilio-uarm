@@ -273,7 +273,7 @@ void oscEvent(OscMessage theOscMessage) {
   if(theOscMessage.addrPattern().equals(address)){
     println(m);
     
-    if(m.equals("up"))
+   if(m.equals("up"))
       move(0,0,1);
     else if(m.equals("down"))
       move(0,0,-1);
@@ -285,8 +285,12 @@ void oscEvent(OscMessage theOscMessage) {
       move(0,1,0);
     else if(m.equals("back"))
       move(0,-1,0);
-      
+    else if(m.equals("catch"))
+      armCatch();
+    else if(m.equals("release"))
+      armRelease();  
     println("end of oscEvent listener");
+      
   }
 }
 
@@ -294,4 +298,14 @@ void move(int x, int y, int z){
   slider2d_xy.setValueX(current_x+(x*stepSize));
   slider2d_xy.setValueY(current_y+(y*stepSize));
   slider_z_axis.setValue(current_z+(z*stepSize));
+}
+
+void armCatch(){
+  GRAB_EN = true;
+  GRAB_UPDATE = true;
+}
+
+void armRelease(){
+  GRAB_EN = false;
+  GRAB_UPDATE = true;
 }
